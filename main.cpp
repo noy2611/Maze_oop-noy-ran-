@@ -1,87 +1,205 @@
-// #include <iostream>
-// #include "State.h"
-// #include "Searcher.h"
-// #include "BFS.h"
-// #include "EightPuzzelSearchableT.h"
+#include <iostream>
+#include <stack>
+#include <vector>
+#include <random>
+using namespace std;
 
+// Default values
+int m = 4, n = 4;
+// Function to display the maze
+void displayMaze(int M, int N, char **maze)
+{
+   for (int i = 0; i < M; i++)
+   {
+      for (int j = 0; j < N; j++)
+      {
+         cout << maze[i][j] << " ";
+      }
+      cout << endl;
+   }
+}
 
-// using namespace std;
+// Function to get the index of a cell from its coordinates
+int getIdx(int x, int y, vector<pair<int, pair<int, int>>> cell_list)
+{
+   for (int i = 0; i < cell_list.size(); i++)
+   {
+      if (cell_list[i].second.first == x && cell_list[i].second.second == y)
+         return cell_list[i].first;
+   }
+   cout << "getIdx() couldn't find the index!" << endl;
+   return -1;
+}
+// Function to generate the maze using the depth-first search algorithm
+void createMaze(int M, int N, char **maze)
+{
 
+// Vector to store information about each cell
+vector<pair<int, pair<int, int>>> cell_list;
 
-// int main()
-// {
-// 	/*State a("A");
-// 	State b("B");
-// 	State goal("B");
+// Vector to keep track of visited cells
+vector<bool> visited(m * n, false);
 
-// 	if(b == goal)
-// 		cout << "Target State found!" << endl;*/
+// Stack to store cells during maze generation
+stack<pair<int, pair<int, int>>> m_stack;
 
+// Seed for random number generation
+random_device rdev;
 
-// 	EightPuzzel ep;
-// 	EightPuzzelSearchableT ep_searchable(ep);
+// Mersenne Twister random number generator using the seed
+mt19937 rng(rdev());
 
-	
-// 	/*Create Search algorithm*/
-// 	Searcher<string>* search_BFS = new BFS<string>();
-// 	Solution<string> solution = search_BFS->search(ep_searchable);
+// Distribution for generating random integers between 1 and 100
+uniform_int_distribution<mt19937::result_type> dist100(1, 100);
 
-	
-// 	ep_searchable.getGoalState();
-// 	ep_searchable.getStartState();
-// 	ep_searchable.getAllPossibleStates(*ep_searchable.getStartState());
+   int nVisited = 0;
+   int k = 0;
 
+   // Creating a list of cells with coordinates
+   for (int i = 1; i < M; i += 2)
+   {
+      for (int j = 1; j < N; j += 2)
+      {
+         cell_list.push_back(make_pair(k, make_pair(i, j)));
+         k++;
+      }
+   }
+   // Initializing the maze generation with a random cell
+   int randIdx = dist100(rng) % m * n;
+   m_stack.push(cell_list[randIdx]);
+   visited[randIdx] = true;
+   nVisited++;
 
+   // Maze generation algorithm
+   while (nVisited < m * n)
+   {
 
-// 	cin.get();
-// 	return 0;
-// }
+      vector<int> neighbours;
+      // Check if there is a neighbor in the North direction
+      if (m_stack.top().second.first > 1)
+      {
+         // Check if the cell above the current cell is not a wall (#) and hasn't been visited
+         if (maze[m_stack.top().second.first - 2][m_stack.top().second.second + 0] &&
+             !visited[getIdx(m_stack.top().second.first - 2, m_stack.top().second.second + 0, cell_list)])
+         {
+            // If conditions are met, add the North neighbor direction (0) to the list of available neighbors
+            neighbours.push_back(0);
+         }
+      }
+      // East
+      if (m_stack.top().second.second < N - 2)
+      {
+         if (maze[m_stack.top().second.first + 0][m_stack.top().second.second + 2] &&
+             !visited[getIdx(m_stack.top().second.first + 0, m_stack.top().second.second + 2, cell_list)])
+         {
+            neighbours.push_back(1);
+         }
+      }
+      // South
+      if (m_stack.top().second.first < M - 2)
+      {
+         if (maze[m_stack.top().second.first + 2][m_stack.top().second.second + 0] &&
+             !visited[getIdx(m_stack.top().second.first + 2, m_stack.top().second.second + 0, cell_list)])
+         {
+            neighbours.push_back(2);
+         }
+      }
+      // West
+      if (m_stack.top().second.second > 1)
+      {
+         if (maze[m_stack.top().second.first + 0][m_stack.top().second.second - 2] &&
+             !visited[getIdx(m_stack.top().second.first + 0, m_stack.top().second.second - 2, cell_list)])
+         {
+            neighbours.push_back(3);
+         }
+      }
+      // Check if there are available neighbors to explore
+      if (!neighbours.empty())
+      {
+         // Choose a random direction from the list of available neighbors
+         int next_cell_dir = neighbours[dist100(rng) % neighbours.size()];
+         // Create a path between this cell and neighbour
+         switch (next_cell_dir)
+         {
+         case 0: // North
+            // Carve a path from the current cell to the chosen neighbor (North direction)
+            maze[m_stack.top().second.first - 1][m_stack.top().second.second + 0] = ' ';
+            // Push the index of the chosen neighbor cell onto the stack
+            m_stack.push(cell_list[getIdx(m_stack.top().second.first - 2, m_stack.top().second.second + 0, cell_list)]);
+            break;
+         case 1: // East
+            maze[m_stack.top().second.first + 0][m_stack.top().second.second + 1] = ' ';
+            m_stack.push(cell_list[getIdx(m_stack.top().second.first + 0, m_stack.top().second.second + 2, cell_list)]);
+            break;
+         case 2: // South
+            maze[m_stack.top().second.first + 1][m_stack.top().second.second + 0] = ' ';
+            m_stack.push(cell_list[getIdx(m_stack.top().second.first + 2, m_stack.top().second.second + 0, cell_list)]);
+            break;
+         case 3: // West
+            maze[m_stack.top().second.first + 0][m_stack.top().second.second - 1] = ' ';
+            m_stack.push(cell_list[getIdx(m_stack.top().second.first + 0, m_stack.top().second.second - 2, cell_list)]);
+            break;
+         }
+         // Mark the current cell as visited and increment the visited count
+         visited[m_stack.top().first] = true;
+         nVisited++;
+      }
+      else
+      {
+         // If no available neighbors, backtrack by popping the current cell from the stack
+         m_stack.pop();
+      }
+   }
+}
 
-// #include <iostream>
-// #include <vector>
-// #include <cstdlib>
-// #include <ctime>
+int main()
+{
+   cout << "Random Maze Generator!" << endl;
+   cout << "Enter the Height and the width of the maze: ";
+   cin >> m >> n;
+   while (m < 1 || n < 1)
+   {
+      cout << "Desired dimensions impossible. Re-enter pls." << endl;
+      cin >> m >> n;
+   }
+   // Calculate the number of rows in the maze
+   int M = 2 * m + 1;
+   // Calculate the number of columns in the maze
+   int N = 2 * n + 1;
+   // Declare a pointer to a pointer (2D array) of characters for the maze
+   char **maze;
+   // Allocate memory for an array of character pointers (rows) for the maze
+   maze = new char *[M];
 
-// class Maze {
-// private:
-//     int width, height;
-//     std::vector<std::vector<char>> grid;
+   // Allocate memory for each row of the maze
+   for (int i = 0; i < M; i++)
+   {
+   // Allocate memory for each column of the maze within the current row
+      maze[i] = new char[N];
+   }
 
-// public:
-//     Maze(int w, int h) : width(w), height(h) {
-//         grid.resize(height, std::vector<char>(width, '#'));
-//     }
+   // Initialize the maze grid with walls and paths
+   // Loop through each row of the maze
+   for (int i = 0; i < M; i++)
+   {
+      // Loop through each column of the maze
+      for (int j = 0; j < N; j++)
+      {
+         // Check if either the row index 'i' or column index 'j' is even
+         if (!(i & 1) || !(j & 1))
+            // If either index is even, set the cell as a wall ('#')
+            maze[i][j] = '#';
+         else
+            // If neither index is even, set the cell as an empty path (' ')
+            maze[i][j] = ' ';
+      }
+   }
 
-//     void generate() {
-//         srand(time(nullptr));  // Seed the random number generator
+   createMaze(M, N, maze);
+   maze[0][1] = 'S';
+   maze[2 * m][2 * n - 1] = 'E';
+   cout << "Here's the maze you asked for. Enjoy! :D" << endl;
+   displayMaze(M, N, maze);
 
-//         for (int i = 1; i < height - 1; i += 2) {
-//             for (int j = 1; j < width - 1; j += 2) {
-//                 grid[i][j] = ' ';
-                
-//                 if (i > 1) grid[i - 1][j] = ' ';  // Carve upward
-//                 if (j > 1) grid[i][j - 1] = ' ';  // Carve left
-//             }
-//         }
-//     }
-
-//     void display() {
-//         for (int i = 0; i < height; ++i) {
-//             for (int j = 0; j < width; ++j) {
-//                 std::cout << grid[i][j];
-//             }
-//             std::cout << '\n';
-//         }
-//     }
-// };
-
-// int main() {
-//     int width = 21;  // Adjust the width and height as needed
-//     int height = 21;
-
-//     Maze maze(width, height);
-//     maze.generate();
-//     maze.display();
-
-//     return 0;
-// }
+   return 0;
+}
