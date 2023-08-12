@@ -85,17 +85,3 @@
 
 //     return 0;
 // }
-#include <iostream>
-// #include "stdafx.h"
-#include <ctime>
-#include <windows.h>
-#include <conio.h>
-#include <stack>
-#include <fstream>
-
-using namespace std;
-#define SIZE 11;
-
-struct cell{
-   
-}
