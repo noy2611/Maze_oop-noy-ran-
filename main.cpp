@@ -34,23 +34,23 @@ int getIdx(int x, int y, vector<pair<int, pair<int, int>>> cell_list)
 void createMaze(int M, int N, char **maze)
 {
 
-// Vector to store information about each cell
-vector<pair<int, pair<int, int>>> cell_list;
+   // Vector to store information about each cell
+   vector<pair<int, pair<int, int>>> cell_list;
 
-// Vector to keep track of visited cells
-vector<bool> visited(m * n, false);
+   // Vector to keep track of visited cells
+   vector<bool> visited(m * n, false);
 
-// Stack to store cells during maze generation
-stack<pair<int, pair<int, int>>> m_stack;
+   // Stack to store cells during maze generation
+   stack<pair<int, pair<int, int>>> m_stack;
 
-// Seed for random number generation
-random_device rdev;
+   // Seed for random number generation
+   random_device rdev;
 
-// Mersenne Twister random number generator using the seed
-mt19937 rng(rdev());
+   // Mersenne Twister random number generator using the seed
+   mt19937 rng(rdev());
 
-// Distribution for generating random integers between 1 and 100
-uniform_int_distribution<mt19937::result_type> dist100(1, 100);
+   // Distribution for generating random integers between 1 and 100
+   uniform_int_distribution<mt19937::result_type> dist100(1, 100);
 
    int nVisited = 0;
    int k = 0;
@@ -65,9 +65,16 @@ uniform_int_distribution<mt19937::result_type> dist100(1, 100);
       }
    }
    // Initializing the maze generation with a random cell
-   int randIdx = dist100(rng) % m * n;
+   // Generate a random index within the range of cell_list
+   int randIdx = dist100(rng) % (m * n);
+
+   // Push the randomly chosen cell onto the stack
    m_stack.push(cell_list[randIdx]);
+
+   // Mark the randomly chosen cell as visited
    visited[randIdx] = true;
+
+   // Increment the count of visited cells
    nVisited++;
 
    // Maze generation algorithm
@@ -174,7 +181,7 @@ int main()
    // Allocate memory for each row of the maze
    for (int i = 0; i < M; i++)
    {
-   // Allocate memory for each column of the maze within the current row
+      // Allocate memory for each column of the maze within the current row
       maze[i] = new char[N];
    }
 
