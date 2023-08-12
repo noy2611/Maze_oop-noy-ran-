@@ -2,6 +2,8 @@
 #include <stack>
 #include <vector>
 #include <random>
+#include "myModal.h"
+
 using namespace std;
 
 // Default values
@@ -161,6 +163,7 @@ void createMaze(int M, int N, char **maze)
 
 int main()
 {
+   
    cout << "Random Maze Generator!" << endl;
    cout << "Enter the Height and the width of the maze: ";
    cin >> m >> n;
@@ -207,6 +210,13 @@ int main()
    maze[2 * m][2 * n - 1] = 'E';
    cout << "Here's the maze you asked for. Enjoy! :D" << endl;
    displayMaze(M, N, maze);
+
+
+
+
+MazeManager man;
+man.saveMaze("test",maze,M,N);
+man.printMaze("test");
 
    return 0;
 }
