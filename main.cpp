@@ -222,9 +222,9 @@ int main()
    // Generate the maze using the generator
    // cout<<maze.getCell(0,0)<<endl;
    // cout<< maze.getCellIndex(1,1)<<endl;
-   MazeManager man;
-man.saveMaze("test",maze,M,N);
-man.printMaze("test");
+//    MazeManager man;
+// man.saveMaze("test",maze,M,N);
+// man.printMaze("test");
    maze = generator.generate(M, N, maze);
    
    maze.setCell(0, 1, 'S');
