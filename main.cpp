@@ -2,6 +2,7 @@
 #include <stack>
 #include <vector>
 #include <random>
+#include "myModal.h"
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
 using namespace std;
@@ -163,6 +164,7 @@ int m = 4, n = 4;
 
 int main()
 {
+   
    cout << "Random Maze Generator!" << endl;
    cout << "Enter the Height and the width of the maze: ";
    cin >> m >> n;
@@ -220,6 +222,9 @@ int main()
    // Generate the maze using the generator
    // cout<<maze.getCell(0,0)<<endl;
    // cout<< maze.getCellIndex(1,1)<<endl;
+   MazeManager man;
+man.saveMaze("test",maze,M,N);
+man.printMaze("test");
    maze = generator.generate(M, N, maze);
    
    maze.setCell(0, 1, 'S');
