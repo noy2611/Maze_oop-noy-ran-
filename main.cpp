@@ -5,12 +5,16 @@
 #include "myModal.h"
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
+
+#include <iostream>
+#include <fstream> // Include the necessary header for file streams
 using namespace std;
 
 
 
 int main()
 {
+   
    // Default values
    int m = 4, n = 4;
    string name;
@@ -48,7 +52,16 @@ int main()
    maze.setCell(0, 1, 'S');
    maze.setCell(2 * m, 2 * n - 1, 'E');
    maze.display();
-      man.saveMazeToFile(maze.getName(),maze);
+
+string filePath;
+cout<<"Enter name"<<endl;
+cin>>filePath;
+
+// string filePath = "noy1.txt";
+man.loadAndProcessFile(filePath);
+
+     // man.saveMazeToFile(maze.getName(),maze);
       // man.loadMazeFromFile(,maze);
+   //   man.loadMazeFromFile("noy1");
    return 0;
 }

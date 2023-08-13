@@ -17,6 +17,7 @@ private:
 
 public:
     Maze2d(int numRows, int numColumns,string name);
+    // Maze2d();
     ~Maze2d();
     // Set the value of a cell at coordinates (x, y)
     void setCell(int x, int y, char value);

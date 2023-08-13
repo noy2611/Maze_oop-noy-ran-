@@ -1,6 +1,7 @@
 #include "mymodal.h"
 #include <iostream>
 #include <fstream>
+#include <sstream> 
 #include "Maze2d.h" 
 
 void MazeManager::saveMazeToFile(std::string mazeName, const Maze2d& maze) {
@@ -25,37 +26,23 @@ void MazeManager::saveMazeToFile(std::string mazeName, const Maze2d& maze) {
 }
 
 
-void MazeManager::loadMazeFromFile(std::string mazeName, Maze2d& maze) {
-    // Open the file for reading
-    std::ifstream inFile(mazeName + ".txt");
-    
+///////load
+
+
+void MazeManager::loadAndProcessFile(const std::string& filePath) {
+    std::ifstream inFile(filePath); // Open the file for reading
+
     if (inFile.is_open()) {
-        // Read each line (row) from the file
-        for (int i = 0; i < maze.getRows(); i++) {
-            std::string row;
-            std::getline(inFile, row);
-            
-            // Ensure the row length matches the number of columns in the maze
-            if (row.length() != maze.getColumns()) {
-                std::cerr << "Error: Invalid row length in maze file." << std::endl;
-                return;
-            }
-            
-            // Fill the maze cells with the characters from the row
-            for (int j = 0; j < maze.getColumns(); j++) {
-                maze.setCell(i, j, row[j]);
-            }
+        std::string line;
+        while (std::getline(inFile, line)) {
+            std::cout << line << std::endl; // Print each line to the console
         }
-        
-        // Close the file
-        inFile.close();
-        maze.setName(mazeName); // Set the maze name after loading
-        cout << "Maze loaded from " << mazeName << ".txt" <<endl;
+
+        inFile.close(); // Close the file
     } else {
-       cerr << "Unable to open file for reading." << endl;
+        std::cerr << "Unable to open file." << std::endl;
     }
 }
-
 
 
 
