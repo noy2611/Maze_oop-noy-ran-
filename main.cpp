@@ -48,6 +48,7 @@ int main()
    maze.setCell(0, 1, 'S');
    maze.setCell(2 * m, 2 * n - 1, 'E');
    maze.display();
-      man.saveMazeToFile("myMaze",maze);
+      man.saveMazeToFile(maze.getName(),maze);
+      // man.loadMazeFromFile(,maze);
    return 0;
 }
