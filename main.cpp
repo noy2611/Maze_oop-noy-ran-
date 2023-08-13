@@ -227,8 +227,12 @@ int main()
 // man.printMaze("test");
    maze = generator.generate(M, N, maze);
    
+   MazeManager man;
+
+
    maze.setCell(0, 1, 'S');
    maze.setCell(2 * m, 2 * n - 1, 'E');
    maze.display();
+      man.saveMazeToFile("myMaze",maze);
    return 0;
 }

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
-
+#include "Maze2d.h"
 
 using namespace std;
 
@@ -11,6 +11,6 @@ private:
     std::map<std::string, std::vector<std::string>> mazeMap;
 
 public:
-    void saveMaze(std::string mazeName, char** maze, int M, int N);
-    void printMaze(std::string mazeName);
+void saveMazeToFile(std::string mazeName, const Maze2d& maze);
+    // void printMaze(std::string mazeName);
 };
