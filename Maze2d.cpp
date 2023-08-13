@@ -1,6 +1,6 @@
 #include "Maze2d.h"
 
-Maze2d::Maze2d(int numRows, int numColumns) : rows(numRows), columns(numColumns)
+Maze2d::Maze2d(int numRows, int numColumns, string name) : rows(numRows), columns(numColumns), mazeName(name)
 {
      
     // Allocate memory for an array of character pointers (rows) for the maze
@@ -26,7 +26,6 @@ Maze2d::Maze2d(int numRows, int numColumns) : rows(numRows), columns(numColumns)
             maze[i][j] = ' ';
       }
    }
-   
 }
 
 Maze2d::~Maze2d()

@@ -16,7 +16,7 @@ private:
     vector<pair<int, pair<int, int>>> cell_list;
 
 public:
-    Maze2d(int numRows, int numColumns);
+    Maze2d(int numRows, int numColumns,string name);
     ~Maze2d();
     // Set the value of a cell at coordinates (x, y)
     void setCell(int x, int y, char value);
