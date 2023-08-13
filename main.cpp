@@ -34,7 +34,8 @@ int main()
    /////////////////////////////////////////test/////////////////////////////////////////
 
    Maze2d maze(M, N,name);
-   
+
+    Maze2d maze1;
    // Generate maze
     myMaze2dGenerator generator;
 
@@ -58,9 +59,18 @@ cout<<"Enter name"<<endl;
 cin>>filePath;
 
 // string filePath = "noy1.txt";
-man.loadAndProcessFile(filePath);
+ man.loadAndProcessFile(filePath, maze1);  
+    // size_t fileSize = man.calculateFileSize(filePath);
+  maze1.display();
 
-     // man.saveMazeToFile(maze.getName(),maze);
+
+// cout<<"the size of maze is"<<endl;
+ // man.displaySizeInFile(filePath,fileSize);
+
+
+
+
+  // man.saveMazeToFile(maze.getName(),maze);
       // man.loadMazeFromFile(,maze);
    //   man.loadMazeFromFile("noy1");
    return 0;

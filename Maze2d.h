@@ -16,9 +16,12 @@ private:
     vector<pair<int, pair<int, int>>> cell_list;
 
 public:
-    Maze2d(int numRows, int numColumns,string name);
-    // Maze2d();
+    Maze2d(int numRows, int numColumns, string name);
+    Maze2d(){};
     ~Maze2d();
+  
+
+
     // Set the value of a cell at coordinates (x, y)
     void setCell(int x, int y, char value);
 
@@ -33,20 +36,19 @@ public:
 
     int getSize() const; // Accessor for size
 
-    string getName() const; // Accessor for mazeName
+    string getName() const;           // Accessor for mazeName
     void setName(const string &name); // Mutator for mazeName
-    int getCellIndex(int row, int col, const vector<pair<int, pair<int, int>>>& cell_list) const;
+    int getCellIndex(int row, int col, const vector<pair<int, pair<int, int>>> &cell_list) const;
     void display()
-{
-   
-    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < columns; j++)
-        {
-            cout << maze[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-};
 
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                cout << maze[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
