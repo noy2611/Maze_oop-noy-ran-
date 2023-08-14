@@ -5,6 +5,7 @@
 #include "myModal.h"
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
+#include "playMaze2d.h"
 using namespace std;
 
 
@@ -48,6 +49,9 @@ int main()
    maze.setCell(0, 1, 'S');
    maze.setCell(2 * m, 2 * n - 1, 'E');
    maze.display();
-      man.saveMazeToFile("myMaze",maze);
+   // man.saveMazeToFile("myMaze",maze);
+   playMaze2d player;
+   player.InitializePlayableMaze(maze);
+   player.Play();
    return 0;
 }
