@@ -33,44 +33,62 @@ void MazeManager::saveMazeToFile(std::string mazeName, const Maze2d &maze)
 
 ///////load
 
-// void MazeManager::loadAndProcessFile(const std::string& filePath) {
-//     std::ifstream inFile(filePath); // Open the file for reading
+void MazeManager::loadFile(const std::string &filePath, Maze2d &maze)
+{
+    std::ifstream mazeFile(filePath);
+    if (!mazeFile)
+    {
+        std::cerr << "Error opening maze file." << std::endl;
+        return;
+    }
 
-//     if (inFile.is_open()) {
-//         std::string line;
-//         while (std::getline(inFile, line)) {
-//             std::cout << line << std::endl; // Print each line to the console
-//         }
+    int rows = 0;
+    int columns = 0;
+    std::vector<std::string> mazeData; // Store the maze data as strings
 
-//         inFile.close(); // Close the file
-//     } else {
-//         std::cerr << "Unable to open file." << std::endl;
-//     }
-// }
+    // Read the entire maze file into mazeData vector
+    std::string line;
+    while (getline(mazeFile, line))
+    {
+        mazeData.push_back(line);
+        if (line.length() > columns)
+        {
+            columns = line.length();
+        }
+        rows++;
+    }
+    // cout<<rows<<" "<<columns<<endl;
+    mazeFile.clear();
+    mazeFile.seekg(0, std::ios::beg);
+    // Extract the filename from the filePath
+    std::string mazeName = filePath.substr(filePath.find_last_of("/\\") + 1);
+    mazeName = mazeName.substr(0, mazeName.find_last_of('.'));
+    // Set the maze name
+    maze.setName(mazeName);
 
-///////טעינה מקובץ
+    maze.setRows(rows);
+    maze.setColumns(columns);
+    maze.createMazeGrid(); // Allocate memory for the maze grid
 
-// void MazeManager::loadAndProcessFile(const std::string& filePath, Maze2d& maze)
-// {
-//     std::ifstream inFile(filePath); // Open the file for reading
+    // Populate the maze grid from the file
+    for (int i = 0; i < rows; i++)
+    {
+        const std::string &currentLine = mazeData[i];
+        for (int j = 0; j < columns; j++)
+        {
+            if (j < currentLine.length())
+            {
+                maze.setCell(i, j, currentLine[j]);
+            }
+            else
+            {
+                maze.setCell(i, j, ' '); // Set spaces for missing cells
+            }
+        }
+    }
 
-//     if (inFile.is_open())
-//     {
-//         std::string line;
-//         while (std::getline(inFile, line))
-//         {
-//             // std::cout << line << std::endl; // Print each line to the console
-          
-//         }
-
-//         inFile.close(); // Close the file
-//     }
-//     else
-//     {
-//         std::cerr << "Unable to open file." << std::endl;
-//     }
-// }
-
+    mazeFile.close();
+}
 /// filesize
 
 size_t MazeManager::calculateFileSize(const std::string &filePath)

@@ -12,10 +12,8 @@ private:
 
 public:
 void saveMazeToFile(std::string mazeName, const Maze2d& maze);
-void loadAndProcessFile(const std::string& filePath, Maze2d& maze);
+void loadFile(const std::string& filePath, Maze2d& maze);
 size_t calculateFileSize(const std::string& filePath);
-
-
 
     
 };
