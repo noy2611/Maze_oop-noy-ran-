@@ -16,7 +16,7 @@ void MazeManager::saveMazeToFile(std::string mazeName, const Maze2d &maze)
         {
             for (int j = 0; j < maze.getColumns(); j++)
             {
-                outFile << maze.getCell(i, j) << " ";
+                outFile << maze.getCell(i, j);
             }
             outFile << "\n"; // Write a newline character after each row
         }
