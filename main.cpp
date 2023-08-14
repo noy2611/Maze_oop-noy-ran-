@@ -67,15 +67,17 @@ cin>>filePath;
     man.loadFile(filePath, maze);
    
     maze.display();
-    cout << maze.getName();
+   //  maze.calculateMemorySize();
+   //  cout<<maze.getSize();
+   //  cout << maze.getName();
 // cout<<"the size of maze is"<<endl;
  // man.displaySizeInFile(filePath,fileSize);
 
   // man.saveMazeToFile(maze.getName(),maze);
       // man.loadMazeFromFile(,maze);
    //   man.loadMazeFromFile("noy1");
-   //  playMaze2d player;
-   // player.InitializePlayableMaze(maze);
-   // player.Play();
+    playMaze2d player;
+   player.InitializePlayableMaze(maze);
+   player.Play();
    return 0;
 }

@@ -100,15 +100,29 @@ void Maze2d::display()
 }
 void Maze2d::setRows(int row)
 {
-    rows=row;
+    rows = row;
 }
 void Maze2d::setColumns(int col)
 {
-    columns=col;
+    columns = col;
 }
- void Maze2d::createMazeGrid() {
-        maze = new char*[rows];
-        for (int i = 0; i < rows; ++i) {
-            maze[i] = new char[columns];
-        }
+void Maze2d::createMazeGrid()
+{
+    maze = new char *[rows];
+    for (int i = 0; i < rows; ++i)
+    {
+        maze[i] = new char[columns];
     }
+}
+void Maze2d::calculateMemorySize()
+{
+    // Calculate size of mazeName and vector cell_list
+    size = sizeof(mazeName);
+
+    // Calculate size of 2D dynamic array maze
+    for (int i = 0; i < rows; i++)
+    {
+        size += columns * sizeof(char); // Calculate size of each row
+    }
+    size += rows * sizeof(char *); // Calculate size of the array of row pointers
+}

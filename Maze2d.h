@@ -35,4 +35,5 @@ public:
     int getCellIndex(int row, int col, const vector<pair<int, pair<int, int>>> &cell_list) const;
     void display();
     void createMazeGrid();
+    void calculateMemorySize();
 };
