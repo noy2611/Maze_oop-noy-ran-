@@ -6,6 +6,7 @@
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
 #include "playMaze2d.h"
+#include "myView.h"
 
 #include <iostream>
 #include <fstream> // Include the necessary header for file streams
@@ -56,19 +57,19 @@ MazeManager man;
 string filePath;
 cout<<"Enter name"<<endl;
 cin>>filePath;
-
+displayFilesAndFolders(filePath);
 // string filePath = "noy1.txt";
  
     // size_t fileSize = man.calculateFileSize(filePath);
 //   maze1.display();
 
-  Maze2d maze;
+//   Maze2d maze;
   
-    man.loadFile(filePath, maze);
+//     man.loadFile(filePath, maze);
    
-    maze.display();
-    maze.calculateMemorySize();
-    cout<<maze.getSize();
+//     maze.display();
+//     maze.calculateMemorySize();
+//     cout<<maze.getSize();
    //  cout << maze.getName();
 // cout<<"the size of maze is"<<endl;
  // man.displaySizeInFile(filePath,fileSize);
