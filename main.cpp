@@ -6,12 +6,16 @@
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
 #include "playMaze2d.h"
+
+#include <iostream>
+#include <fstream> // Include the necessary header for file streams
 using namespace std;
 
 
 
 int main()
 {
+   
    // Default values
    int m = 4, n = 4;
    string name;
@@ -31,7 +35,8 @@ int main()
    /////////////////////////////////////////test/////////////////////////////////////////
 
    Maze2d maze(M, N,name);
-   
+
+    Maze2d maze1;
    // Generate maze
     myMaze2dGenerator generator;
 
@@ -49,8 +54,27 @@ int main()
    maze.setCell(0, 1, 'S');
    maze.setCell(2 * m, 2 * n - 1, 'E');
    maze.display();
-   // man.saveMazeToFile("myMaze",maze);
-   playMaze2d player;
+
+string filePath;
+cout<<"Enter name"<<endl;
+cin>>filePath;
+
+// string filePath = "noy1.txt";
+ man.loadAndProcessFile(filePath, maze1);  
+    // size_t fileSize = man.calculateFileSize(filePath);
+  maze1.display();
+
+
+// cout<<"the size of maze is"<<endl;
+ // man.displaySizeInFile(filePath,fileSize);
+
+
+
+
+  // man.saveMazeToFile(maze.getName(),maze);
+      // man.loadMazeFromFile(,maze);
+   //   man.loadMazeFromFile("noy1");
+    playMaze2d player;
    player.InitializePlayableMaze(maze);
    player.Play();
    return 0;

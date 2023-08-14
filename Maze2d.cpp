@@ -87,3 +87,6 @@ int Maze2d::getCellIndex(int row, int col, const vector<pair<int, pair<int, int>
     cout << "getCellIndex() couldn't find the index!" << endl;
     return -1;
 }
+
+
+
