@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "Maze2d.h"
+#include "myModal.h"
 
 void MazeManager::saveMazeToFile(std::string mazeName, const Maze2d &maze)
 {
@@ -113,5 +114,30 @@ size_t MazeManager::calculateFileSize(const std::string &filePath)
     {
         cerr << "Unable to open file." << endl;
         return 0; // Return 0 on error
+    }
+}
+
+
+//get maze
+Maze2d MazeManager::getMaze(const std::string& mazeName) {
+    auto it = mazeMap.find(mazeName);
+    if (it != mazeMap.end()) {
+        return it->second;
+    } else {
+        Maze2d emptyMaze; // Create a default-constructed Maze2d object
+        return emptyMaze;
+    }
+}
+
+
+//save to hashmap
+
+void MazeManager::addMazeData(const std::string& mazeName, const Maze2d& maze) {
+    // Check if the maze name already exists in the mazeMap
+    if (mazeMap.find(mazeName) == mazeMap.end()) {
+        // Maze with the given name doesn't exist, add the new maze
+        mazeMap[mazeName] = maze;
+    } else {
+        std::cout << "Maze with name " << mazeName << " already exists." << std::endl;
     }
 }
