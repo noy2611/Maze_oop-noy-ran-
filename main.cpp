@@ -2,6 +2,7 @@
 #include <stack>
 #include <vector>
 #include <random>
+
 #include "myModal.h"
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
@@ -10,7 +11,7 @@
 #include "dircommand.h"
 #include "mymaze2dGeneratorCommand.h"
 #include "displaycommand.h"
-
+#include "myController.h"
 
 #include <iostream>
 #include <fstream> // Include the necessary header for file streams
@@ -111,9 +112,9 @@ int main()
 
    // displayFilesAndFolders(filePath);
 
-//בדיקה לdir command
-   // vector<string> path;
-   // string inputLine;
+   // בדיקה לdir command
+   //  vector<string> path;
+   //  string inputLine;
 
    // cout << "Enter a path: ";
    // getline(cin, inputLine);
@@ -129,29 +130,79 @@ int main()
    // dircommand dir;
    // dir.execute(path);
 
+   // generate maze command
+   //  int M, N;
+   //  mymaze2dGeneratorCommand generatorCommand;
 
-//generate maze command
-int M, N;
-mymaze2dGeneratorCommand generatorCommand;
+   // std::cout << "Enter value of M: ";
+   // std::cin >> M;
+   // std::cout << "Enter value of N: ";
+   // std::cin >> N;
+   // string name;
+   // std::cout << "Enter NAME: ";
+   // std::cin >> name;
 
-std::cout << "Enter value of M: ";
-std::cin >> M;
-std::cout << "Enter value of N: ";
-std::cin >> N;
-string name;
-std::cout << "Enter NAME: ";
-std::cin >> name;
+   // // // Prepare the command arguments
+   //  std::vector<std::string> commandArgs = { std::to_string(M), std::to_string(N), name };
 
-// Prepare the command arguments
-std::vector<std::string> commandArgs = { std::to_string(M), std::to_string(N), name };
+   // // // Call the execute function for maze generation
+   //  generatorCommand.execute(commandArgs);
 
-// Call the execute function for maze generation
-generatorCommand.execute(commandArgs);
+   // // Create a Maze2d instance to store the generated maze
+   // Maze2d generatedMaze;
+   // displaycommand dis;
 
-// Create a Maze2d instance to store the generated maze
+   // dis.execute(commandArgs);
+
+   /// check
+   int M, N;
+   mymaze2dGeneratorCommand generatorCommand;
+
+   std::cout << "Enter value of M: ";
+   std::cin >> M;
+   std::cout << "Enter value of N: ";
+   std::cin >> N;
+   string name;
+   std::cout << "Enter NAME: ";
+   std::cin >> name;
+
+   // Prepare the command arguments
+   std::vector<std::string> commandArgs = {std::to_string(M), std::to_string(N), name};
+   // Maze2d disp;
+ 
+   // Call the execute function for maze generation
+   generatorCommand.execute(commandArgs);
 
 
+displaycommand displayCommand;
 
+    // Prepare the display command arguments (maze name)
+    std::vector<std::string> displayArgs = {"display", name};
+
+    // Call the execute function for displaying the maze
+    displayCommand.execute(displayArgs);
+
+   // not work{
+
+   // myController controller;
+   // controller.setupCommands();
+   // std::string commandName;
+   // std::vector<std::string> commandArgs;
+
+   // std::cout << "Enter command name: ";
+   // std::cin >> commandName;
+
+   // std::string arg;
+   // while (std::cin >> arg)
+   // {
+   //    commandArgs.push_back(arg);
+   // }
+
+   // Call the executeCommand method of the controller to execute the command
+   // controller.executeCommand(commandName, commandArgs);
+   //}
+
+   // controller.executeCommand("display", {}); // Empty vector for arguments
 
    return 0;
 }

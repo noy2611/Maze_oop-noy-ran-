@@ -1,15 +1,24 @@
 #include "Command.h"
 #include "Maze2d.h"
+#include "myModal.h"
+#pragma once
 
 class displaycommand : public Command
 {
 private:
-    Maze2d disp;
-
+    
 public:
-    displaycommand(const Maze2d& maze) : disp(maze) {}
 
-    void execute(const vector<string> &CommandName) override {
-        disp.display(); // Call the display function of Maze2d
+    void execute(const vector<string> &CommandName) override
+    {  
+        
+       if (CommandName.size() < 2) {
+            cout << "Not enough arguments for display command." << endl;
+            return;
+        }
+    
+        string mazeName = CommandName[1]; 
+        Maze2d mazeToDisplay = MazeManager::getMaze(mazeName);
+        mazeToDisplay.display();
     }
 };

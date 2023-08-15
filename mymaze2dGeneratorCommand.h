@@ -1,5 +1,6 @@
 #include "Command.h"
 #include "myMaze2dGenerator.h"
+#include "myModal.h"
 
 #pragma once
 
@@ -7,6 +8,7 @@ class mymaze2dGeneratorCommand : public Command
 {
 private:
     myMaze2dGenerator generator; // Create an instance of myMaze2dGenerator
+    // map<string, Maze2d> AllmazeMap;
 
 public:
     //  Maze2d generate(int M, int N, Maze2d maze);
@@ -34,6 +36,9 @@ public:
         Maze2d generatedMaze = generator.generate(M, N, maze);
       
         //check print
-        //generatedMaze.display();
+        // generatedMaze.display();
+        MazeManager mazemanager;
+        mazemanager.addMazeData(name,generatedMaze);
+
     }
 };
