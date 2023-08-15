@@ -2,7 +2,6 @@
 #include <stack>
 #include <vector>
 #include <random>
-
 #include "myModal.h"
 #include "Maze2d.h"
 #include "myMaze2dGenerator.h"
@@ -14,11 +13,11 @@
 #include "myController.h"
 #include "saveCommend.h"
 #include "loadcommand.h"
-
 #include <iostream>
 #include <fstream> // Include the necessary header for file streams
 #include "BFS.h"
 #include "SearchableAdapter.h"
+#include "Cli.h"
 using namespace std;
 
 int main()
@@ -167,7 +166,8 @@ int main()
    // displaycommand dis;
 
    // dis.execute(commandArgs);
-
+   Cli check;
+   check.start();
    /// check
    int M, N;
    mymaze2dGeneratorCommand generatorCommand;

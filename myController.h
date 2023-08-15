@@ -3,18 +3,19 @@
 // #include <string>
 // #include <functional>
 // #include "Command.h"
+#include <iostream>
 // // vהוספת כל הקומנד שנעשההההההההההההההההההה
 
-// #pragma once
-// using namespace std;
+#pragma once
+using namespace std;
 
-// class myController
-// {
-// private:
+class myController
+{
+private:
 //     map<string, Command *> commands;
 //    map<string, std::function<void()>> m_functions;
 
-// public:
+public:
 //     myController(/* args */);
 //     ~myController();
 
@@ -35,7 +36,7 @@
 
 //         return &(it->second);
 //     }
-// };
+};
 
 
 
