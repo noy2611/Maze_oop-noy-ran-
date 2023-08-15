@@ -19,15 +19,20 @@ public:
             return;
         }
 
-
         string mazeName = CommandName[1];
         string filePath = CommandName[2];
 
         cout << "Loading maze: " << mazeName << " from file: " << filePath << endl;
 
-        Maze2d mazeToLoad; 
+        Maze2d mazeToLoad;
         MazeManager::loadFile(filePath, mazeToLoad);
+        // mazeToLoad.display();
+          std::vector<std::string> displayArgs = {"display", mazeName};
 
-
+//     // Call the execute function for displaying the maze
+    
+    MazeManager::addMazeData(mazeName,mazeToLoad);
+displaycommand displayCommand;
+    displayCommand.execute(displayArgs);
     }
 };

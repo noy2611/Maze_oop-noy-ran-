@@ -166,54 +166,55 @@ int main()
    // displaycommand dis;
 
    // dis.execute(commandArgs);
-   Cli check;
-   check.start();
+   // Cli check;
+   // check.start();
    /// check
-   int M, N;
-   mymaze2dGeneratorCommand generatorCommand;
+   // int M, N;
+   // mymaze2dGeneratorCommand generatorCommand;
 
-   std::cout << "Enter value of M: ";
-   std::cin >> M;
-   std::cout << "Enter value of N: ";
-   std::cin >> N;
-   string name;
-   std::cout << "Enter NAME: ";
-   std::cin >> name;
+   // std::cout << "Enter value of M: ";
+   // std::cin >> M;
+   // std::cout << "Enter value of N: ";
+   // std::cin >> N;
+   // string name;
+   // std::cout << "Enter NAME: ";
+   // std::cin >> name;
 
    // Prepare the command arguments
-   std::vector<std::string> commandArgs = {std::to_string(M), std::to_string(N), name};
-   // Maze2d disp;
+   // std::vector<std::string> commandArgs = {std::to_string(M), std::to_string(N), name};
+   // // Maze2d disp;
  
-   // Call the execute function for maze generation
-   generatorCommand.execute(commandArgs);
+   // // Call the execute function for maze generation
+   // generatorCommand.execute(commandArgs);
 
 
-displaycommand displayCommand;
+// displaycommand displayCommand;
 
-    // Prepare the display command arguments (maze name)
-    std::vector<std::string> displayArgs = {"display", name};
+//     // Prepare the display command arguments (maze name)
 
-    // Call the execute function for displaying the maze
-    displayCommand.execute(displayArgs);
 
 // saveCommend saveCommand;
 //        vector<string> saveArgs = {"save", name}; // Assuming "save" is the command to save
 //     saveCommand.execute(saveArgs);
 
-cout<<"load: "<<endl;
+// cout<<"load: "<<endl;
  loadcommand loadCommand;
 
 //     // Prepare the command arguments (replace these with actual values)
-  std::vector<std::string> commandArgs1 = {"load", "mazeName", "noy1.txt"};
+  std::vector<std::string> commandArgs1 = {"load", "noy", "noy.txt"};
 
 //     // Call the execute function for loading
     loadCommand.execute(commandArgs1);
+   
 
     // loadcommand loadCmd;
     // vector<string> commandArgs1 = {"load", "noy1","noy1.txt"};
     // loadCmd.execute(commandArgs1);
 
-  
+//       std::vector<std::string> displayArgs = {"display", "noy"};
+
+// //     // Call the execute function for displaying the maze
+//     displayCommand.execute(displayArgs);
 
    return 0;
 }
