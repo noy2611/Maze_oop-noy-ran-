@@ -13,6 +13,8 @@
 #include "displaycommand.h"
 #include "myController.h"
 #include "saveCommend.h"
+#include "loadcommand.h"
+
 
 #include <iostream>
 #include <fstream> // Include the necessary header for file streams
@@ -182,9 +184,23 @@ displaycommand displayCommand;
 
     // Call the execute function for displaying the maze
     displayCommand.execute(displayArgs);
-saveCommend saveCommand;
-       vector<string> saveArgs = {"save", name}; // Assuming "save" is the command to save
-    saveCommand.execute(saveArgs);
+
+// saveCommend saveCommand;
+//        vector<string> saveArgs = {"save", name}; // Assuming "save" is the command to save
+//     saveCommand.execute(saveArgs);
+
+cout<<"load: "<<endl;
+ loadcommand loadCommand;
+
+//     // Prepare the command arguments (replace these with actual values)
+  std::vector<std::string> commandArgs1 = {"load", "mazeName", "noy1.txt"};
+
+//     // Call the execute function for loading
+    loadCommand.execute(commandArgs1);
+
+    // loadcommand loadCmd;
+    // vector<string> commandArgs1 = {"load", "noy1","noy1.txt"};
+    // loadCmd.execute(commandArgs1);
 
   
 

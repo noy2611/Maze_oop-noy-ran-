@@ -7,8 +7,6 @@
 #pragma once
 class saveCommend :public Command
 {
-private:
-
 public:
    void execute(const vector<string> &CommandName) override
     {
