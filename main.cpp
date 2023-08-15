@@ -12,6 +12,7 @@
 #include "mymaze2dGeneratorCommand.h"
 #include "displaycommand.h"
 #include "myController.h"
+#include "saveCommend.h"
 
 #include <iostream>
 #include <fstream> // Include the necessary header for file streams
@@ -181,28 +182,11 @@ displaycommand displayCommand;
 
     // Call the execute function for displaying the maze
     displayCommand.execute(displayArgs);
+saveCommend saveCommand;
+       vector<string> saveArgs = {"save", name}; // Assuming "save" is the command to save
+    saveCommand.execute(saveArgs);
 
-   // not work{
-
-   // myController controller;
-   // controller.setupCommands();
-   // std::string commandName;
-   // std::vector<std::string> commandArgs;
-
-   // std::cout << "Enter command name: ";
-   // std::cin >> commandName;
-
-   // std::string arg;
-   // while (std::cin >> arg)
-   // {
-   //    commandArgs.push_back(arg);
-   // }
-
-   // Call the executeCommand method of the controller to execute the command
-   // controller.executeCommand(commandName, commandArgs);
-   //}
-
-   // controller.executeCommand("display", {}); // Empty vector for arguments
+  
 
    return 0;
 }

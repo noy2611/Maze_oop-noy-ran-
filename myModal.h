@@ -12,7 +12,7 @@ private:
     // std::map<std::string, std::vector<std::string>> mazeMap;
    static map<string, Maze2d> mazeMap;
 public:
-    void saveMazeToFile(std::string mazeName, const Maze2d &maze);
+     static void saveMazeToFile(std::string mazeName, const Maze2d &maze);
     void loadFile(const std::string &filePath, Maze2d &maze);
     size_t calculateFileSize(const std::string &filePath);
     static void addMazeData(const std::string &mazeName, const Maze2d &maze);
