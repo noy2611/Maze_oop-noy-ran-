@@ -1,4 +1,3 @@
-#include "mymodal.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -119,7 +118,7 @@ size_t MazeManager::calculateFileSize(const std::string &filePath)
 
 
 //get maze
-Maze2d MazeManager::getMaze(const std::string& mazeName) {
+ Maze2d MazeManager::getMaze(const std::string& mazeName) {
     auto it = mazeMap.find(mazeName);
     if (it != mazeMap.end()) {
         return it->second;
@@ -132,7 +131,7 @@ Maze2d MazeManager::getMaze(const std::string& mazeName) {
 
 //save to hashmap
 
-void MazeManager::addMazeData(const std::string& mazeName, const Maze2d& maze) {
+ void MazeManager::addMazeData(const std::string& mazeName, const Maze2d& maze) {
     // Check if the maze name already exists in the mazeMap
     if (mazeMap.find(mazeName) == mazeMap.end()) {
         // Maze with the given name doesn't exist, add the new maze
@@ -141,3 +140,5 @@ void MazeManager::addMazeData(const std::string& mazeName, const Maze2d& maze) {
         std::cout << "Maze with name " << mazeName << " already exists." << std::endl;
     }
 }
+
+map<string, Maze2d> MazeManager::mazeMap;
