@@ -7,10 +7,25 @@ template <class T>
 class Solution
 {
 public:
-	Solution() {};
-	~Solution() {};
+    Solution() : found(false) {}
+    ~Solution() {}
+
+    void addState(const State<T>* state)
+    {
+        m_solution.push_back(state);
+    }
+
+    bool isSolutionFound() const
+    {
+        return found;
+    }
+
+    void setSolutionFound(bool value)
+    {
+        found = value;
+    }
 
 private:
-	std::vector<unique_ptr<State<T>>> m_solution;
+    std::vector<const State<T>*> m_solution;
+    bool found;
 };
-

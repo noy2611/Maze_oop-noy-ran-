@@ -1,3 +1,4 @@
+#pragma once
 #include "Maze2d.h"
 #include <cstdlib>
 #include <conio.h>

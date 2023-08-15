@@ -87,7 +87,7 @@ void MazeManager::loadFile(const std::string &filePath, Maze2d &maze)
             }
         }
     }
-
+    maze.setCurrentPosition(0,1);
     mazeFile.close();
 }
 /// filesize
